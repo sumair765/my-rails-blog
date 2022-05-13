@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-    
-    def index
+  def index
     render 'post_list'
-    end
+  end
 
-    def show
+  def show
     render 'post_details'
-    end
+  end
 end
