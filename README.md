@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# MY BLOG APP
+# MY RAILS BLOG
 It is blog application built with rails. It shows the list of posts and lets readers to interact with them by adding comments and liking posts.
 
 
