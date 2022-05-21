@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    render 'user_list'
+    @users = User.all
+    render  'user_list'
   end
 
   def shows
