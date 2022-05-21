@@ -1,2 +1,5 @@
-<h1>Users#list</h1>
-<p>Find me in app/views/users/user_list.html.erb</p>
+<ul class="list-group mt-5">
+  <% @users.each do |user| %>
+    <%= render 'users/user', user: user %>
+  <% end %>
+</ul>
