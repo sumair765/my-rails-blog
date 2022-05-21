@@ -1,0 +1,37 @@
+<div class="my-3 border border-secondary p-4 bg-light rounded">
+
+  <div class="d-flex justify-content-between">
+  
+    <h2><%= @post.title %> by <%= @post.author.name %></h2>
+    <div>
+      <button type="button" class="btn btn-primary">
+        Comments:
+      </button>
+      <span class="badge bg-secondary">
+        <%= @post.commentsCounter  ? @post.commentsCounter : 0 %>
+      </span>
+
+      <%= render "add_like", post: @post %>
+    </div>
+  </div>
+  <p>
+    <%= @post.text %>
+  </p>
+
+  <div class="mt-5"> 
+    <h4> Comments </h4>
+
+    <ul class="list-group">
+      <% if @post.comments.length > 0 %>
+        <%= render 'comments' %>
+      <% else %>
+        <li class="list-group-item">No comments</li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="mt-5">
+   <h4 class="mb-3">Add Comment</h4>
+    <%= render "add_comment", post: @post %>
+  </div>
+</div>
