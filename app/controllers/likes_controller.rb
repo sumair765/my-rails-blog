@@ -1,12 +1,17 @@
 class LikesController < ApplicationController
+  before_action :find_post
+
   def create
-    @like = current_user.likes.new
-    @like.post_id = params[:post_id]
-    if @like.save
-      flash[:success] = 'Like added successfully'
-      redirect_to user_post_path(current_user.id, params[:post_id])
-    else
-      render :create
-    end
+    return if @post.liked?(current_user)
+
+    @post.likes.create(user_id: current_user.id)
+    flash[:success] = 'Post was liked'
+    redirect_to "/users/#{@post.user_id}/posts/#{@post.id}"
+  end
+
+  private
+
+  def find_post
+    @post = Post.find(params[:post_id])
   end
 end

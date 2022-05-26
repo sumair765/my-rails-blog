@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
   def create
+    @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
-    @comment.post_id = params[:post_id]
+    @comment.post_id = @post.id
     if @comment.save
-      flash[:success] = 'Comment added successfully'
-      redirect_to user_post_path(current_user.id, params[:post_id])
+      flash[:success] = 'Comment was created'
+      redirect_to "/users/#{@post.user_id}/posts/#{@post.id}"
     else
-      render :create
+      redirect_to "/users/#{@post.user_id}/posts/#{@post.id}"
+      flash[:danger] = 'Comment was not created, please fill in all fields'
     end
   end
 

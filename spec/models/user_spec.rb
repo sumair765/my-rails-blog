@@ -1,45 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  describe 'User Validation' do
-    subject { User.new(name: 'Esther Alice', post_counter: 0) }
-
+RSpec.describe Comment, type: :model do
+  describe 'Comment model' do
+    subject { User.new(name: 'TestUser', posts_counter: 0) }
     before { subject.save }
 
-    context 'Name' do
-      it 'name should be valid' do
-        expect(subject).to be_valid
-      end
-
-      it 'name should be invalid if it is nil' do
-        subject.name = nil
-        expect(subject).to_not be_valid
-      end
+    it 'User should be valid' do
+      expect(subject).to be_valid
     end
 
-    context 'Posts Counter' do
-      it 'post_counter should be valid' do
-        expect(subject).to be_valid
-      end
-
-      it 'post_counter should be invaild if it is string' do
-        subject.post_counter = 'hello'
-        expect(subject).to_not be_valid
-      end
-
-      it 'post_counter should be invalid if it is negative number' do
-        subject.post_counter = -1
-        expect(subject).to_not be_valid
-      end
+    it 'Name should be present' do
+      subject.name = nil
+      expect(subject).to_not be_valid
     end
 
-    context 'Methods' do
-      it 'return the last 3 comments' do
-        (1..6).each do
-          subject.posts.create(title: 'Alice in wonderlands', text: 'Beware the Jabberwock, my son!')
-        end
-        expect(subject.recent_posts).to eq(Post.order(created_at: :desc).limit(3))
-      end
+    it 'Posts_counter should be more or equal to 0' do
+      subject.posts_counter = -1
+      expect(subject).to_not be_valid
     end
   end
 end
