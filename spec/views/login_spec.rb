@@ -22,7 +22,7 @@ RSpec.feature 'Login', type: :feature do
     fill_in 'user[email]', with: 'user.email'
     fill_in 'user[password]', with: 'password'
     click_button 'Log in'
-    expect(page).to have_content "Forgot your password?"
+    expect(page).to have_content 'Forgot your password?'
   end
 
   it 'Login successfully' do
@@ -41,4 +41,4 @@ RSpec.feature 'Login', type: :feature do
     click_button 'Log in'
     expect(page).to have_content 'Invalid Email or password.'
   end
-end 
+end

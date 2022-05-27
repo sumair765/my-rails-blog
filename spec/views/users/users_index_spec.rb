@@ -30,4 +30,4 @@ RSpec.feature 'Users Page' do
       end
     end
   end
-end 
+end
